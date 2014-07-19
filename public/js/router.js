@@ -10,7 +10,8 @@ define([
   'views/home_view',
   'models/spot_model',
   'views/friends_view',
-], function($, _, Backbone, SpotView, SpotListView, UploadView, ProfileView, MapView, HomeView, Spot, FriendsView){
+  'collections/spot_collection',
+], function($, _, Backbone, SpotView, SpotListView, UploadView, ProfileView, MapView, HomeView, Spot, FriendsView, SpotCollection){
   var Router = Backbone.Router.extend({
 
     initialize: function(){
@@ -55,8 +56,19 @@ define([
 
       showSpotList: function(){
         console.log('spot list view');
-        var view = new SpotListView; //pass in collection
-        this.render(view);
+        var spots = new SpotCollection();
+        var that = this;
+        
+        spots.fetch({
+          success: function(spots) {
+            console.log("Spot collection fetch was successful in showSpotList.");
+            var view = new SpotListView({collection: spots}); //pass in collection
+            that.render(view);
+          },
+          error: function() {
+            console.lot("Spot collection fetch was unsucessful in showSpotList.");
+          }
+        });
       },
 
       upload: function(){

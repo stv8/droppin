@@ -5,7 +5,7 @@ define([
 ], function($, _, Backbone){
   var Spot = Backbone.Model.extend({
     
-    urlRoot: 'api/v1/spots',
+    url: 'api/v1/spots',
 
     initialize: function(){
     	console.log('spot created');

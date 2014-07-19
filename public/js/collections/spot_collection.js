@@ -3,13 +3,14 @@ define([
   'backbone',
   'models/spot_model'
 ], function(_, Backbone, Spot){
-
   var SpotCollection = Backbone.Collection.extend({
     
+    url: 'api/v1/spots',
+
     model: Spot,
 
     initialize: function(){
-    	console.log('spot list created');
+    	console.log('spot collection created');
     }
   });
   

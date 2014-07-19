@@ -6,7 +6,7 @@ module Api
       def index
         @spots = Spot.all
 
-        render json: @spots, root: false
+        render json: @spots
       end
 
       # GET /spots/1

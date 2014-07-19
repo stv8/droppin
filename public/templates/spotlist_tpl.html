@@ -1,8 +1,5 @@
 <ul data-role="listview" data-filter="true" data-theme='b' data-filter-placeholder="Search Spots" data-inset="true">
         <% _.each(spots, function(spot) { %> 
-
-        	<li class="spot"><a href="#spot/<%= spot.id %>"><%= spot.get('title') %></a></li> 
-
+        	<li class="spot"><a href="#spot/<%= spot.id %>"><%= spot.name %></a></li> 
         <% }); %>
-
 </ul>

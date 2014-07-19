@@ -13,6 +13,8 @@ define([
 
     el: '#content',
 
+    template: _.template(SpotListTpl),
+
     initialize: function(){
       
     },
@@ -22,7 +24,9 @@ define([
     }, 
 
     render: function() {
-      this.$el.html("<h1>spot list view</h1>");
+      console.log(this.collection.toJSON());
+      this.$el.html(this.template({spots: this.collection.toJSON()}));
+      this.$el.trigger("create");
     },
 
     goToSpot: function(source) {
