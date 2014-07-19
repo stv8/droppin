@@ -1,53 +1,23 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Spot List</title>
-    <style type="text/css" media="screen">
-      html, body {
-        background-color: #4B7399;
-        font-family: Verdana, Helvetica, Arial;
-        font-size: 14px;
-      }
-      a { color: #0000FF; }
-
-      #container {
-        width: 75%;
-        margin: 0 auto;
-        background-color: #FFF;
-        padding: 20px 40px;
-        border: solid 1px black;
-        margin-top: 20px;
-      }
-    </style>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript" charset="utf-8">
-      $(function() {
+<html lang="en">
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, height=device-height">   
+    <head>
+        <title>DROPPIN</title>
         
-        function addSpot(spot) {
-          $('#spots').append('<li>' + spot.name + '</ul>');
-        }
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.1.min.css">
+        <link rel="stylesheet" type="text/css" href="css/topcoat-mobile-dark.min.css"> 
+        <link rel="stylesheet" href="css/style.css">
+        
+        <!-- Load the script "js/main.js" as our entry point -->
+        <script data-main="js/main" src="js/libs/require/require.js"></script>
 
-        $('#add_spot').on("click", function(e) {
-          $.post('/api/v1/spots', $("#new_spot").serialize(), addSpot);
-          $("#new_spot").trigger('reset');
-          e.preventDefault();
-        });
+    </head>
+    
+    <body id='body'>
+        <div data-role="page" id="container">
+            <div id="content"></div>
+        </div>
+    </body>
 
-        $.getJSON('/api/v1/spots', function(spots) {
-          $.each(spots, function() { addSpot(this); });
-        });
-      });
-    </script>
-  <body>
-    <div id="container">
-      <h1>Spot List</h1>
-      <form id="new_spot">
-        <input type="text" name="spot[name]" id="spot_name">
-        <input type="text" name="spot[description]" id="spot_description">
-        <a href="#" id="add_spot">Submit</a>
-      </form>
-      <ul id="spots"></ul>
-    </div>
-  </body>
 </html>
-
