@@ -3,9 +3,9 @@ define([
     'underscore',
     'backbone',
     'text!templates/login_tpl.html',
-    'views/footer_view',
-    'views/header_view',
-    'views/home_view',
+    'views/shared/footer_view',
+    'views/shared/header_view',
+    'views/home/home_view',
     'models/person_model',
 ], function($, _, Backbone, LoginTpl, FooterView, HeaderView, HomeView, Person) {
     'use strict';

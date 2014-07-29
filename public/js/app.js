@@ -4,8 +4,8 @@ define([
   'backbone',
   'router',
   'views/login_view',
-  'views/footer_view',
-  'views/header_view',
+  'views/shared/footer_view',
+  'views/shared/header_view',
 ], function($, _, Backbone, Router, LoginView, FooterView, HeaderView){
  
  'use strict';

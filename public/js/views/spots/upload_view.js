@@ -35,8 +35,7 @@ define([
 
       spot.save(null, {
         success: function(model, response) {
-          console.log("Spot was successfully saved.");
-          console.log("Spot name: " + model.get('name'));
+          console.log("Spot name: "+ model.get('name') + " was successfully saved.");
         },
         error:  function(model, response) {
           console.log("Spot was not saved.");

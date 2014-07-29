@@ -3,7 +3,7 @@ define([
   'underscore',
   'backbone',
   'text!templates/spot_tpl.html',
-  'views/friends_view',
+  'views/profile/friends_view',
 ], function($, _, Backbone, SpotTemplate, FriendsView){
 
   'use strict';

@@ -3,7 +3,7 @@ define([
   'underscore', 
   'backbone',
   'text!templates/profile_tpl.html',
-  'views/searchUsers_view'    
+  'views/profile/searchUsers_view'    
 ], function($, _, Backbone, ProfileTpl, SearchUsersView){
   
   'use strict';
