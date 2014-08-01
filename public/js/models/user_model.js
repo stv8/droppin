@@ -3,13 +3,19 @@ define([
   'underscore',
   'backbone',
 ], function($, _, Backbone){
-  var Person = Backbone.Model.extend({
+  var User = Backbone.Model.extend({
     
+    url: "api/v1/users",
+
+    defaults: {
+      "email": "",
+      "password": ""
+    },
+
     initialize: function(){
-    	console.log('person created');
     }
     
   });
   // Return the model for the module
-  return Person;
+  return User;
 });

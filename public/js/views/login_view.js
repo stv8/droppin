@@ -6,8 +6,9 @@ define([
     'views/shared/footer_view',
     'views/shared/header_view',
     'views/home/home_view',
-    'models/person_model',
-], function($, _, Backbone, LoginTpl, FooterView, HeaderView, HomeView, Person) {
+    'models/user_model',
+    'models/registration_model'
+], function($, _, Backbone, LoginTpl, FooterView, HeaderView, HomeView, User, Registration) {
     'use strict';
 
     var LoginView = Backbone.View.extend({
@@ -55,9 +56,23 @@ define([
         },
 
         signUp: function(e) {
-            // var self = this;
-            // var username = this.$('#username').val();
-            // var password = this.$('#password').val();
+            var self = this;
+            var username = this.$('#username').val();
+            var password = this.$('#password').val();
+
+            var registration = new Registration({
+                "email": username,
+                "password": password
+            });
+
+            registration.save(null, {
+                success: function(model, response) {
+                    console.log("successful registration " + model.toJSON());
+                },
+                error: function(model, response) {
+                    console.log("unsuccessful registration");
+                }
+            });
 
             // Parse.User.signUp(username, password, {
             //     ACL: new Parse.ACL()
@@ -65,16 +80,16 @@ define([
             //     success: function(user) {
             //         alert('Signup Success!');
 
-            //         //person model is used for user search
-            //         var person = new Person();
-            //         person.set("username", user.get('username'));
-            //         person.save(null, {
-            //             success: function(person) {
-            //                 console.log('person saved with username:' + person.get('username'));
+            //         //user model is used for user search
+            //         var user = new user();
+            //         user.set("username", user.get('username'));
+            //         user.save(null, {
+            //             success: function(user) {
+            //                 console.log('user saved with username:' + user.get('username'));
             //             },
 
             //             error: function(error) {
-            //                 console.log('failed to save person');
+            //                 console.log('failed to save user');
             //             }
             //         });
                     

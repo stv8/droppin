@@ -27,8 +27,9 @@ define([
             //     console.log('login view');
             //     new LoginView;
             // }
-            new FooterView;
-            new HeaderView;
+            new LoginView;
+            // new FooterView;
+            // new HeaderView;
         }
     });
 

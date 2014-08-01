@@ -16,11 +16,13 @@ end
 
 gem "active_model_serializers", "~> 0.8.0"
 
+gem "devise"
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
 # To use Jbuilder templates for JSON
-# gem 'jbuilder'
+gem 'jbuilder'
 
 # Use unicorn as the app server
 # gem 'unicorn'

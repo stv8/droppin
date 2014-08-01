@@ -4,8 +4,8 @@ define([
   'backbone',
   'text!templates/searchUsers_tpl.html',
   'text!templates/userList_tpl.html',
-  'models/person_model',    
-], function($, _, Backbone, SearchUsersTpl, UserListTpl, Person){
+  'models/user_model',    
+], function($, _, Backbone, SearchUsersTpl, UserListTpl, User){
 
 	var SearchUsersView = Backbone.View.extend({
 
