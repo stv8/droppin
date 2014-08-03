@@ -7,8 +7,9 @@ define([
     'views/shared/header_view',
     'views/home/home_view',
     'models/user_model',
-    'models/registration_model'
-], function($, _, Backbone, LoginTpl, FooterView, HeaderView, HomeView, User, Registration) {
+    'models/registration_model',
+    'models/session_model'
+], function($, _, Backbone, LoginTpl, FooterView, HeaderView, HomeView, User, Registration, Session) {
     'use strict';
 
     var LoginView = Backbone.View.extend({
@@ -29,87 +30,65 @@ define([
 
         logIn: function(e) {
             var self = this;
-            var username = this.$('#username').val();
+            var email = this.$('#email').val();
             var password = this.$('#password').val();
 
-            // Parse.User.logIn(username, password, {
-            //     success: function(user) {
-            //         alert('Login Success!');
+            var session = new Session({
+                "email": email,
+                "password": password
+            });
+
+            session.save(null, {
+                success: function(model, response) {
+                    console.log(response['auth_token']);
+
                     
-            //         //delete self
-            //         self.undelegateEvents();
+                    self.undelegateEvents();
 
-            //         new HomeView;
-            //         new FooterView;
-            //         new HeaderView;
-            //     },
-
-            //     error: function(user, error) {
-            //         self.$('.login-form .error').html('Invalid username or password. Please try again.').show();
-            //         self.$('.login-form button').removeAttr('disabled');
-            //     }
-            // });
-
-            // this.$('.login-form button').attr('disabled', 'disabled');
+                    new HomeView;
+                    new FooterView;
+                    new HeaderView;
+                },
+                error: function(model, response) {
+                    console.log("log in failed");
+                    self.$('.login-form .error').html('Invalid username or password. Please try again.').show();
+                    self.$('.login-form button').removeAttr('disabled');
+                }
+            });
+            
+            this.$('.login-form button').attr('disabled', 'disabled');
 
             return false;
         },
 
         signUp: function(e) {
             var self = this;
-            var username = this.$('#username').val();
+            var email = this.$('#email').val();
             var password = this.$('#password').val();
 
             var registration = new Registration({
-                "email": username,
+                "email": email,
                 "password": password
             });
 
             registration.save(null, {
                 success: function(model, response) {
                     console.log("successful registration " + model.toJSON());
+                    
+                    self.undelegateEvents();
+
+                    new HomeView;
+                    new FooterView;
+                    new HeaderView;
                 },
                 error: function(model, response) {
                     console.log("unsuccessful registration");
+                    self.$('.login-form .error').html(error.message).show();
+                    self.$('.login-form button').removeAttr('disabled');
                 }
             });
 
-            // Parse.User.signUp(username, password, {
-            //     ACL: new Parse.ACL()
-            // }, {
-            //     success: function(user) {
-            //         alert('Signup Success!');
-
-            //         //user model is used for user search
-            //         var user = new user();
-            //         user.set("username", user.get('username'));
-            //         user.save(null, {
-            //             success: function(user) {
-            //                 console.log('user saved with username:' + user.get('username'));
-            //             },
-
-            //             error: function(error) {
-            //                 console.log('failed to save user');
-            //             }
-            //         });
-                    
-            //         //delete self
-            //         self.undelegateEvents();
-                    
-            //         //kick off the app views
-            //         new HomeView;
-            //         new FooterView;
-            //         new HeaderView;
-
-            //     },
-
-            //     error: function(user, error) {
-            //         self.$('.login-form .error').html(error.message).show();
-            //         self.$('.login-form button').removeAttr('disabled');
-            //     }
-            // });
-
-            // this.$('.login-form button').attr('disabled', 'disabled');
+            this.$('.login-form button').attr('disabled', 'disabled');
 
             return false;
         },

@@ -1,6 +1,6 @@
 module Api
   module V1
-    class UsersController < ApplicationController
+    class UsersController < ApiController
       # GET /users
       # GET /users.json
       def index
@@ -23,7 +23,7 @@ module Api
         @user = User.new(params[:user])
 
         if @user.save
-          render json: @user, status: :created, location: @user
+          render json: @user, status: :created
         else
           render json: @user.errors, status: :unprocessable_entity
         end

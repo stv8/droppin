@@ -28,8 +28,6 @@ define([
             //     new LoginView;
             // }
             new LoginView;
-            // new FooterView;
-            // new HeaderView;
         }
     });
 

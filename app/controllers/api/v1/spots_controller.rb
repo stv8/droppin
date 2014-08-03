@@ -1,10 +1,12 @@
 module Api
   module V1
-    class SpotsController < ApplicationController
+    class SpotsController < ApiController
+      #before_action :authenticate_api_v1_user!
+
       # GET /spots
       # GET /spots.json
       def index
-        @spots = Spot.all
+        @spots = Spot.where(user_id: current_user)
 
         render json: @spots
       end
@@ -20,7 +22,7 @@ module Api
       # POST /spots
       # POST /spots.json
       def create
-        @spot = Spot.new(permitted_params)
+        @spot = current_user.spots.build(permitted_params)
 
         if @spot.save
           render json: @spot, status: :created
@@ -53,6 +55,12 @@ module Api
       def permitted_params
         params.permit(:name, :description)
       end
+
+      private
+        def current_user
+          User.where(authentication_token: params[:authentication_token]).take
+        end
+
     end
   end
 end
