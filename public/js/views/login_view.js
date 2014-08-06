@@ -38,23 +38,32 @@ define([
                 "password": password
             });
 
-            session.save(null, {
-                success: function(model, response) {
-                    console.log(response['auth_token']);
-
-                    
-                    self.undelegateEvents();
-
-                    new HomeView;
-                    new FooterView;
-                    new HeaderView;
+            session.fetch(null, {
+                success: function() {
+                    console.log('fetch success');
                 },
-                error: function(model, response) {
-                    console.log("log in failed");
-                    self.$('.login-form .error').html('Invalid username or password. Please try again.').show();
-                    self.$('.login-form button').removeAttr('disabled');
+                error: function() {
+                    console.log('fetch unsuccessful');
                 }
             });
+
+            // session.save(null, {
+            //     success: function(model, response) {
+            //         console.log(response['auth_token']);
+
+                    
+            //         self.undelegateEvents();
+
+            //         new HomeView;
+            //         new FooterView;
+            //         new HeaderView;
+            //     },
+            //     error: function(model, response) {
+            //         console.log("log in failed");
+            //         self.$('.login-form .error').html('Invalid username or password. Please try again.').show();
+            //         self.$('.login-form button').removeAttr('disabled');
+            //     }
+            // });
             
             this.$('.login-form button').attr('disabled', 'disabled');
 

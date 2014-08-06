@@ -20,5 +20,17 @@ module VegaApi
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.middleware.use ActionDispatch::Flash
+
+    # Add headers for authentication
+    config.middleware.insert_before Warden::Manager, Rack::Cors do
+      allow do
+        origins '*' # it's highly recommended to specify the correct origin
+        resource '*', 
+            :headers => :any, 
+            :methods => [:get, :post, :options], # 'options' is really important 
+                                                # for preflight requests
+            :expose  => ['X-CSRF-Token']   #allows usage of token on the front-end
+      end
+    end
   end
 end
