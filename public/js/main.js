@@ -1,6 +1,4 @@
 // Require.js allows us to configure shortcut alias
-'use strict';
-
 require.config({
 
     shim: {
@@ -30,17 +28,15 @@ require.config({
 
 
 	paths: {
-    	jquery: 	      'libs/jquery/jquery',
-        'jquery.mobile':  'libs/jquery/jquery.mobile-1.4.1.min',
+    	jquery: 	        'libs/jquery/jquery',
+      'jquery.mobile':  'libs/jquery/jquery.mobile-1.4.1.min',
     	underscore:       'libs/underscore/underscore',
     	backbone: 	      'libs/backbone/backbone',
     	templates: 	      '../templates/',
-        domReady:         'libs/require/domReady',
-        google:           'libs/google',
-        async:            'libs/async/async' 
+      domReady:         'libs/require/domReady',
+      google:           'libs/google',
+      async:            'libs/async/async' 
   	}
-
-
 });
 
 
@@ -49,8 +45,10 @@ require([
     'router',
     'app',
     'jquery.mobile',
-    'google'
+    'google',
+    'models/session_model'
 ], function(Backbone, Router, AppView, JQMobile, google) {
+    Droppin = {};
 
     // overide backbone.sync
     Backbone._sync = Backbone.sync;
@@ -61,7 +59,7 @@ require([
 
         // Set X-CSRF-Token HTTP header
         options.beforeSend = function(xhr) {
-          var token = VegaApi.csrfToken;
+          var token = Droppin.csrfToken;  
           if (token) xhr.setRequestHeader('X-CSRF-Token', token);
 
           // this will include session information in the requests
@@ -76,7 +74,7 @@ require([
 
          // If response includes CSRF token we need to remember it
          var token = jqXHR.getResponseHeader('X-CSRF-Token') 
-         if (token) VegaApi.csrfToken = token;
+         if (token) Droppin.csrfToken = token;
 
          model.trigger('sync:end');
          if (complete) complete(jqXHR, textStatus);

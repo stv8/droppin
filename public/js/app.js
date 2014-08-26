@@ -6,7 +6,8 @@ define([
   'views/login_view',
   'views/shared/footer_view',
   'views/shared/header_view',
-], function($, _, Backbone, Router, LoginView, FooterView, HeaderView){
+  'models/session_model'
+], function($, _, Backbone, Router, LoginView, FooterView, HeaderView, Session){
  
  'use strict';
   
@@ -19,6 +20,8 @@ define([
         },
 
         render: function() {
+            var session = new Session();
+            session.fetch();
             // if (Parse.User.current()) {
             //     console.log('logged in');
             //     new FooterView;

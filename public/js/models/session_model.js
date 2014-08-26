@@ -11,7 +11,11 @@ define([
   	defaults: {
   		"email": "",
   		"password": ""
-  	}
+  	},
+
+    initialize: function() {
+      console.log('create session model');
+    }
 
   });
   return Session;
