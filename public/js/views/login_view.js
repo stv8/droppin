@@ -13,7 +13,7 @@ define([
     'use strict';
 
     var LoginView = Backbone.View.extend({
-        
+
         template: _.template(LoginTpl),
 
         events: {
@@ -25,6 +25,7 @@ define([
 
         initialize: function() {
             _.bindAll(this, 'logIn', 'signUp');
+            this.model.fetch();
             this.render();
         },
 
@@ -33,38 +34,25 @@ define([
             var email = this.$('#email').val();
             var password = this.$('#password').val();
 
-            var session = new Session({
-                "email": email,
-                "password": password
-            });
+            this.model.set({email: email, password: password});
+            this.model.save(null, {
+                success: function(model, response) {
+                    console.log(response.columns);
 
-            session.fetch(null, {
-                success: function() {
-                    console.log('fetch success');
+
+                    self.undelegateEvents();
+
+                    new HomeView;
+                    new FooterView;
+                    new HeaderView;
                 },
-                error: function() {
-                    console.log('fetch unsuccessful');
+                error: function(model, response) {
+                    console.log("log in failed ");
+                    self.$('.login-form .error').html('Invalid username or password. Please try again.').show();
+                    self.$('.login-form button').removeAttr('disabled');
                 }
             });
 
-            // session.save(null, {
-            //     success: function(model, response) {
-            //         console.log(response['auth_token']);
-
-                    
-            //         self.undelegateEvents();
-
-            //         new HomeView;
-            //         new FooterView;
-            //         new HeaderView;
-            //     },
-            //     error: function(model, response) {
-            //         console.log("log in failed");
-            //         self.$('.login-form .error').html('Invalid username or password. Please try again.').show();
-            //         self.$('.login-form button').removeAttr('disabled');
-            //     }
-            // });
-            
             this.$('.login-form button').attr('disabled', 'disabled');
 
             return false;
@@ -83,7 +71,7 @@ define([
             registration.save(null, {
                 success: function(model, response) {
                     console.log("successful registration " + model.toJSON());
-                    
+
                     self.undelegateEvents();
 
                     new HomeView;
@@ -104,7 +92,7 @@ define([
 
         render: function() {
             this.$el.html(this.template);
-            $('#content').trigger('create'); 
+            $('#content').trigger('create');
             this.delegateEvents();
         }
     });

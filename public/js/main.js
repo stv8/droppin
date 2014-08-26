@@ -48,7 +48,7 @@ require([
     'google',
     'models/session_model'
 ], function(Backbone, Router, AppView, JQMobile, google) {
-    Droppin = {};
+    window.Droppin = window.Droppin || {};
 
     // overide backbone.sync
     Backbone._sync = Backbone.sync;

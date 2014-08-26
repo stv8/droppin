@@ -8,9 +8,9 @@ define([
   'views/shared/header_view',
   'models/session_model'
 ], function($, _, Backbone, Router, LoginView, FooterView, HeaderView, Session){
- 
+
  'use strict';
-  
+
  var AppView = Backbone.View.extend({
 
         el: '#container',
@@ -20,8 +20,6 @@ define([
         },
 
         render: function() {
-            var session = new Session();
-            session.fetch();
             // if (Parse.User.current()) {
             //     console.log('logged in');
             //     new FooterView;
@@ -30,7 +28,8 @@ define([
             //     console.log('login view');
             //     new LoginView;
             // }
-            new LoginView;
+            var session = new Session();
+            new LoginView({model: session});
         }
     });
 
