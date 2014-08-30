@@ -25,12 +25,17 @@ module VegaApi
     config.middleware.insert_before Warden::Manager, Rack::Cors do
       allow do
         origins '*' # it's highly recommended to specify the correct origin
-        resource '*', 
-            :headers => :any, 
-            :methods => [:get, :post, :options], # 'options' is really important 
+        resource '*',
+            :headers => :any,
+            :methods => [:get, :post, :options], # 'options' is really important
                                                 # for preflight requests
             :expose  => ['X-CSRF-Token']   #allows usage of token on the front-end
       end
+    end
+
+    console do
+      require "pry"
+      config.console = Pry
     end
   end
 end

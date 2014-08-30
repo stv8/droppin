@@ -37,7 +37,7 @@ define([
             this.model.set({email: email, password: password});
             this.model.save(null, {
                 success: function(model, response) {
-                    console.log(response.columns);
+                    console.log(JSON.stringify(response));
 
 
                     self.undelegateEvents();

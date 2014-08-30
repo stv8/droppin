@@ -4,6 +4,8 @@ gem 'rails', '4.1.1'
 
 gem 'rails-api'
 
+gem 'pry'
+
 gem 'spring', :group => :development
 
 group :development, :test do

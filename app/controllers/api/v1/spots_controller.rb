@@ -1,7 +1,8 @@
 module Api
   module V1
     class SpotsController < ApiController
-      #before_action :authenticate_api_v1_user!
+      binding.pry
+      before_action :authenticate_api_v1_user!
 
       # GET /spots
       # GET /spots.json
@@ -22,6 +23,7 @@ module Api
       # POST /spots
       # POST /spots.json
       def create
+        binding.pry
         @spot = current_user.spots.build(permitted_params)
 
         if @spot.save
