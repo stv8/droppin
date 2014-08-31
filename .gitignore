@@ -18,4 +18,3 @@
 # Ignore secret tokens
 config/initializers/secret_token.rb
 config/initializers/load_keys.rb
-config/initializers/devise.rb
