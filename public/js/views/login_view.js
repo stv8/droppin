@@ -82,15 +82,12 @@ define([
                 success: function(model, response) {
                     console.log("successful registration " + model.toJSON());
 
-                    self.undelegateEvents();
-
-                    new HomeView;
-                    new FooterView;
-                    new HeaderView;
+                    self.logIn();
                 },
                 error: function(model, response) {
                     console.log("unsuccessful registration");
-                    self.$('.login-form .error').html(error.message).show();
+                    console.log(JSON.stringify(response));
+                    self.$('.login-form .error').html("Something went wrong with registration.").show();
                     self.$('.login-form button').removeAttr('disabled');
                 }
             });

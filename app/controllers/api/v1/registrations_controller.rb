@@ -1,6 +1,8 @@
 module Api
   module V1
     class RegistrationsController < ApiController
+      skip_before_filter :authenticate_user_from_token!
+      skip_before_filter :authenticate_api_v1_user!
 
       def create
         user = User.new(user_params)
@@ -20,10 +22,10 @@ module Api
         end
       end
 
-      private 
+      private
         def user_params
           params.permit(:email, :password)
         end
     end
-  end  
+  end
 end
