@@ -13,7 +13,7 @@ module Api
         user = User.find_for_database_authentication(:email => params[:email])
 
         if user && user.valid_password?(params[:password])
-          user.ensure_authentication_token  # make sure the user has a token generated      
+          user.ensure_authentication_token  # make sure the user has a token generated
           render :json => { :user => user }, :status => :created
         else
           return invalid_login_attempt
@@ -22,7 +22,7 @@ module Api
 
       def destroy
         # expire auth token
-        user = User.where(:authentication_token => params[:authentication_token]).first    
+        user = User.where(:authentication_token => params[:authentication_token]).first
         user.reset_authentication_token!
         render :json => { :message => ["Session deleted."] },  :success => true, :status => :ok
       end

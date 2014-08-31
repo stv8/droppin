@@ -39,6 +39,16 @@ define([
                 success: function(model, response) {
                     console.log(JSON.stringify(response));
 
+                    var email = response.user.email;
+                    var token = response.user.authentication_token;
+
+                    // prepend headers with email and auth token
+                    $(document).ajaxSend(function(event, request) {
+                         if (token && email) {
+                           request.setRequestHeader("token", token);
+                           request.setRequestHeader("email", email);
+                         }
+                    });
 
                     self.undelegateEvents();
 
