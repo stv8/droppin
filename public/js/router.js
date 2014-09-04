@@ -16,17 +16,17 @@ define([
 
     initialize: function(){
     },
-  
+
 
     routes: {
 
       ''          : 'home',
       'home'      : 'home',
       'spot/:id'  : 'showSpot',
-      'spotlist'  : 'showSpotList', 
+      'spotlist'  : 'showSpotList',
       'upload'    : 'upload',
       'profile'   : 'profile',
-      'map'       : 'map',  
+      'map'       : 'map',
 
     },
 
@@ -39,9 +39,10 @@ define([
       showSpot: function(id){
         var self = this;
         var spot = new Spot({id: id});
-
+        console.log('spot about to fetch');
         spot.fetch({
           success: function(spot){
+            console.log("Spot fetch was successful " + JSON.stringify(spot));
             var view = new SpotView({model: spot});
             self.render(view);
             $('#back-button').show();
@@ -58,7 +59,7 @@ define([
         console.log('spot list view');
         var spots = new SpotCollection();
         var that = this;
-        
+
         spots.fetch({
           success: function(spots) {
             console.log("Spot collection fetch was successful in showSpotList.");
@@ -94,7 +95,7 @@ define([
         //close current view
         if(this.currentView) {
           this.currentView.undelegateEvents();
-          this.currentView.$el.removeData().unbind(); 
+          this.currentView.$el.removeData().unbind();
         }
 
         //Atm only need back button for spot view
@@ -107,7 +108,7 @@ define([
         return this;
       }
 
-    
+
   });
 
 
