@@ -35,7 +35,7 @@ require.config({
     	templates: 	      '../templates/',
       domReady:         'libs/require/domReady',
       google:           'libs/google',
-      async:            'libs/async/async' 
+      async:            'libs/async/async'
   	}
 });
 
@@ -59,12 +59,12 @@ require([
 
         // Set X-CSRF-Token HTTP header
         options.beforeSend = function(xhr) {
-          var token = Droppin.csrfToken;  
+          var token = Droppin.csrfToken;
           if (token) xhr.setRequestHeader('X-CSRF-Token', token);
 
           // this will include session information in the requests
           xhr.withCredentials = true;
-          
+
           if (beforeSend) return beforeSend.apply(this, arguments);
         };
       }
@@ -73,7 +73,7 @@ require([
       options.complete = function(jqXHR, textStatus) {
 
          // If response includes CSRF token we need to remember it
-         var token = jqXHR.getResponseHeader('X-CSRF-Token') 
+         var token = jqXHR.getResponseHeader('X-CSRF-Token')
          if (token) Droppin.csrfToken = token;
 
          model.trigger('sync:end');
@@ -97,7 +97,7 @@ require([
     };
 
 
-    Backbone.history.start();
+    Backbone.history.start({pushState: true});
     new AppView();
     new Router();
 
