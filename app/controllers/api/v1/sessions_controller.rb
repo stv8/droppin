@@ -2,7 +2,7 @@ module Api
   module V1
     class SessionsController < Devise::SessionsController
 
-      skip_before_filter :authenticate_user!, only: :create
+      skip_before_filter :authenticate_api_v1_user!, only: [:create, :new]
       after_action :set_csrf_header, only: [:new, :create, :destroy]
 
       def new
