@@ -4,16 +4,6 @@ app.controller('SignUpCtrl', function($scope, $state, Registration, Helpers, Cur
 
     $scope.signup = { first_name: "", email: "", password: "", password_confirmation: "" }
 
-    $scope.show_step_two = false;
-
-    $scope.returnBack = function() {
-        if($scope.show_step_two){
-            $scope.toggleShowStepTwo();
-        } else {
-            $state.go('welcome');
-        }
-    }
-
     $scope.signUp = function() {
         Helpers.show_loading();
 
@@ -22,8 +12,8 @@ app.controller('SignUpCtrl', function($scope, $state, Registration, Helpers, Cur
             function(response) {
                 Helpers.hide_loading();
                 var user = response.user;
-                CurrentUser.store(user.auth_token, user.email, user.first_name);
-                $state.go('app.kitchen');
+                CurrentUser.store(user.authentication_token, user.email, user.first_name);
+                $state.go('tab.spots');
             },
             function(response) {
                 Helpers.ajax_error_handling(response);

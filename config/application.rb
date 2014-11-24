@@ -22,14 +22,21 @@ module VegaApi
     config.middleware.use ActionDispatch::Flash
 
     # Add headers for authentication
-    config.middleware.insert_before Warden::Manager, Rack::Cors do
+    # config.middleware.insert_before Warden::Manager, Rack::Cors do
+    #   allow do
+    #     origins '*' # it's highly recommended to specify the correct origin
+    #     resource '*',
+    #         :headers => :any,
+    #         :methods => [:get, :post, :options], # 'options' is really important
+    #                                             # for preflight requests
+    #         :expose  => ['X-CSRF-Token']   #allows usage of token on the front-end
+    #   end
+    # end
+
+    config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
       allow do
-        origins '*' # it's highly recommended to specify the correct origin
-        resource '*',
-            :headers => :any,
-            :methods => [:get, :post, :options], # 'options' is really important
-                                                # for preflight requests
-            :expose  => ['X-CSRF-Token']   #allows usage of token on the front-end
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options, :delete, :put, :patch]
       end
     end
 

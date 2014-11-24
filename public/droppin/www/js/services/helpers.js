@@ -6,7 +6,7 @@ app.factory('Helpers', function($state, CurrentUser, $ionicLoading, $ionicPopup)
         if(response.status == 422){
             this.showAlert(response.data.errors.join(" "));
         } else if(response.status == 401) {
-            CurrentUser.sign_out();
+            //CurrentUser.sign_out();
         } else {
             this.showAlert("We're sorry a technical error has occured.");
         }

@@ -43,6 +43,24 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     })
 
+    .state('sign_in', {
+      url: "/sign_in",
+      controller: "SignInCtrl",
+      templateUrl: "templates/sign_in.html",
+      data: {
+        requiresLogin: false
+      }
+    })
+
+    .state('sign_up', {
+      url: "/sign_up",
+      controller: "SignUpCtrl",
+      templateUrl: "templates/sign_up.html",
+      data: {
+        requiresLogin: false
+      }
+    })
+
     // setup an abstract state for the tabs directive
     .state('tab', {
       url: "/tab",

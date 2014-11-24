@@ -10,9 +10,9 @@ module Api
       end
 
       def create
-        user = User.find_for_database_authentication(:email => params[:email])
+        user = User.find_for_database_authentication(:email => params[:session][:email])
 
-        if user && user.valid_password?(params[:password])
+        if user && user.valid_password?(params[:session][:password])
           user.ensure_authentication_token  # make sure the user has a token generated
           render :json => { :user => user }, :status => :created
         else
