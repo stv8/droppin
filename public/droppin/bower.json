@@ -1,0 +1,11 @@
+{
+  "name": "droppin",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.0.0-beta.13"
+  },
+  "dependencies": {
+    "angular-local-storage": "~0.1.5",
+    "angular-resource": "~1.3.3"
+  }
+}

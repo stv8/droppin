@@ -20,3 +20,5 @@ config/initializers/secret_token.rb
 config/initializers/load_keys.rb
 
 .idea/
+
+public/droppin/www/lib/*
