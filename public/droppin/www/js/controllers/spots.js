@@ -1,3 +1,5 @@
-app.controller('SpotsCtrl', function($scope) {
+app.controller('SpotsCtrl', function($scope, Spot) {
+
+    $scope.spots = Spot.query();
 
 });

@@ -1,5 +1,10 @@
 <ion-view title="Spots">
     <ion-content>
         <h1>Spots</h1>
+        <div class="list">
+            <div ng-repeat="spot in spots" class="item item-divider">
+                <h2>{{ spot.name }}</h2>
+            </div>
+        </div>
     </ion-content>
 </ion-view>
