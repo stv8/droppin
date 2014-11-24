@@ -24,9 +24,9 @@ app.service('CurrentUser', function(localStorageService) {
 
     this.authorization_header = function() {
         if(this.isAuthenticated()) {
-            return { 'Authorization': 'Token token="' + this.droppin_token() + '", email="' + this.email() + '"' };
+            return { 'token': this.droppin_token(), 'email': this.email() };
         } else {
-            return { 'Authorization': 'Token token="null"' };
+            return { 'token': null };
         }
     };
 

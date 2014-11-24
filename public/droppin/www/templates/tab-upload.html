@@ -1,5 +1,18 @@
 <ion-view title="Upload">
-    <ion-content>
+    <ion-content class="padding">
         <h1>Upload</h1>
+        <form>
+            <div class="list">
+                <label class="item item-input">
+                    <input ng-model="spot.name" type="text" placeholder="Spot Name">
+                </label>
+                <label class="item item-input">
+                    <input ng-model="spot.description" type="text" placeholder="Spot Type">
+                </label>
+                <button ng-click="uploadSpot()" class="button button-positive">
+                    Save Spot
+                </button>
+            </div>
+        </form>
     </ion-content>
 </ion-view>

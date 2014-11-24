@@ -72,10 +72,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
     // Each tab has its own nav history stack:
 
     .state('tab.spots', {
-      url: '/dash',
+      url: '/spots',
       views: {
         'tab-spots': {
-          templateUrl: 'templates/tab-friends.html',
+          templateUrl: 'templates/tab-spots.html',
           controller: 'SpotsCtrl'
         }
       }
