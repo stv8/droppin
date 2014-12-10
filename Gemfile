@@ -8,6 +8,10 @@ gem 'pry'
 
 gem 'spring', :group => :development
 
+gem 'paperclip', '~> 4.2'
+
+gem 'aws-sdk-v1'
+
 group :development, :test do
   gem 'sqlite3'
 end
