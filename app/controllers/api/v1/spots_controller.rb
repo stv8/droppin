@@ -21,6 +21,7 @@ module Api
       # POST /spots.json
       def create
         @spot = current_api_v1_user.spots.build(permitted_params)
+        process_photo
 
         if @spot.save
           render json: @spot, status: :created
@@ -51,12 +52,22 @@ module Api
       end
 
       def permitted_params
-        params.permit(:name, :description)
+        params.permit(:name, :description, :photo)
       end
 
       private
         def current_user
           User.where(authentication_token: params[:authentication_token]).take
+        end
+
+        def process_photo
+          if params[:photo]
+            data = StringIO.new(Base64.decode64(params[:photo][:data]))
+            data.class.class_eval { attr_accessor :original_filename, :content_type }
+            data.original_filename = params[:photo][:filename]
+            data.content_type = params[:photo][:content_type]
+            params[:photo] = data
+          end
         end
 
     end
