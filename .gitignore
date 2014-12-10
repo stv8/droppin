@@ -22,3 +22,6 @@ config/initializers/load_keys.rb
 .idea/
 
 public/droppin/www/lib/*
+
+# Ignore application configuration
+/config/application.yml

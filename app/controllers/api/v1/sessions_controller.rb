@@ -24,14 +24,14 @@ module Api
         # expire auth token
         user = User.where(:authentication_token => params[:authentication_token]).first
         user.reset_authentication_token!
-        render :json => { :message => ["Session deleted."] },  :success => true, :status => :ok
+        render :json => { :message => ['Session deleted.'] },  :success => true, :status => :ok
       end
 
       private
 
       def invalid_login_attempt
         warden.custom_failure!
-        render :json => { :errors => ["Invalid email or password."] },  :success => false, :status => :unauthorized
+        render :json => { :errors => ['Invalid email or password.'] },  :success => false, :status => :unauthorized
       end
 
       def set_csrf_header

@@ -16,11 +16,13 @@ group :production do
   gem 'pg'
 end
 
-gem "active_model_serializers", "~> 0.8.0"
+gem 'active_model_serializers', '~> 0.8.0'
 
-gem "devise"
+gem 'devise'
 
 gem 'rack-cors', :require => 'rack/cors'
+
+gem 'figaro'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

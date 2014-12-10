@@ -18,6 +18,7 @@ app.run(function($ionicPlatform, $rootScope, $state, CurrentUser) {
     if(to.data && to.data.requiresLogin){
       if(!CurrentUser.isAuthenticated()) {
         e.preventDefault();
+        console.log("Access denied.");
         $state.go('welcome');
       }
     }
@@ -78,7 +79,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
           templateUrl: 'templates/tab-spots.html',
           controller: 'SpotsCtrl'
         }
-      }
+      },
+      data: {
+       requiresLogin: true
+     }
     })
 
     .state('tab.upload', {
