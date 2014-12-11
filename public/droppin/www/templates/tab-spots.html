@@ -2,9 +2,10 @@
     <ion-content>
         <h1>Spots</h1>
         <div class="list">
-            <div ng-repeat="spot in spots" class="item item-divider">
+            <a ng-repeat="spot in spots" class="item item-thumbnail-left">
+                <img ng-src="{{ spot.thumb_url }}">
                 <h2>{{ spot.name }}</h2>
-            </div>
+            </a>
         </div>
     </ion-content>
 </ion-view>

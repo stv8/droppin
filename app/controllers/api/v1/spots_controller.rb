@@ -6,7 +6,7 @@ module Api
       def index
         @spots = Spot.where(user_id: current_api_v1_user.id)
 
-        render json: @spots
+        render json: @spots.to_json(:only => [:id, :name, :description], :methods => [:thumb_url])
       end
 
       # GET /spots/1

@@ -43,7 +43,7 @@ Rails.application.configure do
           :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
           :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
       },
-      :url => 'droppin-photos-dev.s3-website-us-east-1.amazonaws.com',
+      :url => ':s3_domain_url',
       :path => '/:class/:attachment/:id_partition/:style/:filename'
   }
 
