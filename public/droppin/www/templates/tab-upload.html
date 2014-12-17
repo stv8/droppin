@@ -9,13 +9,15 @@
                 <label class="item item-input">
                     <input ng-model="spot.description" type="text" placeholder="Spot Type">
                 </label>
-                <button ng-click="uploadSpot()" class="button button-positive">
-                    Save Spot
+                <br><br>
+                <button ng-click="takePicture()" class="icon-left ion-ios7-camera button button-positive">
+                    Take Picture
+                </button>
+                <br><br>
+                <button ng-click="uploadSpot()" class="icon ion-ios7-cloud-upload button button-block button-positive">
+                    Save
                 </button>
             </div>
         </form>
-        <button ng-click="takePicture()" class="button button-positive">
-            Take Pic
-        </button>
     </ion-content>
 </ion-view>
