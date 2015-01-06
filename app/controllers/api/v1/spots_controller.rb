@@ -14,7 +14,7 @@ module Api
       def show
         @spot = Spot.find(params[:id])
 
-        render json: @spot
+        render json: @spot.to_json(:only => [:id, :name, :description], :methods => [:medium_url])
       end
 
       # POST /spots

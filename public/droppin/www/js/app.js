@@ -92,6 +92,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'templates/spot-detail.html',
             controller: 'SpotDetailCtrl'
           }
+        },
+        data: {
+          requiresLogin: true
         }
       })
 
@@ -102,6 +105,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'templates/tab-upload.html',
             controller: 'UploadCtrl'
           }
+        },
+        date: {
+          requiresLogin: true
         }
       })
 
@@ -112,6 +118,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'templates/tab-friends.html',
             controller: 'FriendsCtrl'
           }
+        },
+        date: {
+          requiresLogin: true
         }
       })
 
@@ -122,6 +131,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'templates/friend-detail.html',
             controller: 'FriendDetailCtrl'
           }
+        },
+        date: {
+          requiresLogin: true
         }
       })
 
@@ -132,6 +144,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'templates/tab-account.html',
             controller: 'AccountCtrl'
           }
+        },
+        date: {
+          requiresLogin: true
         }
       });
 
