@@ -1,6 +1,6 @@
 app.factory('Spot', function ($resource, Host, CurrentUser) {
 
-    return $resource(Host + '/api/v1/spots', {}, {
+    return $resource(Host + '/api/v1/spots/:id', {}, {
         'get': { method:'GET', headers: CurrentUser.authorization_header() },
         'save': { method:'POST', headers: CurrentUser.authorization_header() },
         'query': { method:'GET', isArray:true, headers: CurrentUser.authorization_header() },

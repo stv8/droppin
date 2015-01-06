@@ -35,95 +35,105 @@ app.config(function($stateProvider, $urlRouterProvider) {
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-    .state('welcome', {
-      url: "/welcome",
-      controller: 'WelcomeCtrl',
-      templateUrl: "templates/welcome.html",
-      data: {
-        requiresLogin: false
-      }
-    })
+      .state('welcome', {
+        url: "/welcome",
+        controller: 'WelcomeCtrl',
+        templateUrl: "templates/welcome.html",
+        data: {
+          requiresLogin: false
+        }
+      })
 
-    .state('sign_in', {
-      url: "/sign_in",
-      controller: "SignInCtrl",
-      templateUrl: "templates/sign_in.html",
-      data: {
-        requiresLogin: false
-      }
-    })
+      .state('sign_in', {
+        url: "/sign_in",
+        controller: "SignInCtrl",
+        templateUrl: "templates/sign_in.html",
+        data: {
+          requiresLogin: false
+        }
+      })
 
-    .state('sign_up', {
-      url: "/sign_up",
-      controller: "SignUpCtrl",
-      templateUrl: "templates/sign_up.html",
-      data: {
-        requiresLogin: false
-      }
-    })
+      .state('sign_up', {
+        url: "/sign_up",
+        controller: "SignUpCtrl",
+        templateUrl: "templates/sign_up.html",
+        data: {
+          requiresLogin: false
+        }
+      })
 
     // setup an abstract state for the tabs directive
-    .state('tab', {
-      url: "/tab",
-      abstract: true,
-      templateUrl: "templates/tabs.html"
-    })
+      .state('tab', {
+        url: "/tab",
+        abstract: true,
+        templateUrl: "templates/tabs.html"
+      })
 
 
     // Each tab has its own nav history stack:
 
-    .state('tab.spots', {
-      url: '/spots',
-      views: {
-        'tab-spots': {
-          templateUrl: 'templates/tab-spots.html',
-          controller: 'SpotsCtrl'
+      .state('tab.spots', {
+        url: '/spots',
+        views: {
+          'tab-spots': {
+            templateUrl: 'templates/tab-spots.html',
+            controller: 'SpotsCtrl'
+          }
+        },
+        data: {
+          requiresLogin: true
         }
-      },
-      data: {
-       requiresLogin: true
-     }
-    })
+      })
 
-    .state('tab.upload', {
-      url: '/upload',
-      views: {
-        'tab-upload': {
-          templateUrl: 'templates/tab-upload.html',
-          controller: 'UploadCtrl'
+      .state('tab.spot-detail', {
+        url: '/spots/:id',
+        views: {
+          'tab-spots': {
+            templateUrl: 'templates/spot-detail.html',
+            controller: 'SpotDetailCtrl'
+          }
         }
-      }
-    })
+      })
 
-    .state('tab.friends', {
-      url: '/friends',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
+      .state('tab.upload', {
+        url: '/upload',
+        views: {
+          'tab-upload': {
+            templateUrl: 'templates/tab-upload.html',
+            controller: 'UploadCtrl'
+          }
         }
-      }
-    })
+      })
 
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
+      .state('tab.friends', {
+        url: '/friends',
+        views: {
+          'tab-friends': {
+            templateUrl: 'templates/tab-friends.html',
+            controller: 'FriendsCtrl'
+          }
         }
-      }
-    })
+      })
 
-    .state('tab.account', {
-      url: '/account',
-      views: {
-        'tab-account': {
-          templateUrl: 'templates/tab-account.html',
-          controller: 'AccountCtrl'
+      .state('tab.friend-detail', {
+        url: '/friend/:friendId',
+        views: {
+          'tab-friends': {
+            templateUrl: 'templates/friend-detail.html',
+            controller: 'FriendDetailCtrl'
+          }
         }
-      }
-    });
+      })
+
+      .state('tab.account', {
+        url: '/account',
+        views: {
+          'tab-account': {
+            templateUrl: 'templates/tab-account.html',
+            controller: 'AccountCtrl'
+          }
+        }
+      });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/welcome');
