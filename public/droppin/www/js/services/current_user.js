@@ -1,4 +1,9 @@
-app.service('CurrentUser', function(localStorageService) {
+app.service('CurrentUser', function(localStorageService, $state) {
+
+    this.sign_out = function(){
+        this.delete_all();
+        $state.go('welcome');
+    }
 
     this.store = function(token, email, first_name){
         localStorageService.add('droppin_token', token);
@@ -41,8 +46,4 @@ app.service('CurrentUser', function(localStorageService) {
         localStorageService.add('droppin_first_name', user.first_name);
     }
 
-    this.sign_out = function(){
-        this.delete_all();
-        location.reload()
-    }
 });
