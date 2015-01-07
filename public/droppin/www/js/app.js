@@ -125,7 +125,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       })
 
       .state('tab.friend-detail', {
-        url: '/friend/:friendId',
+        url: '/friends/:friendId',
         views: {
           'tab-friends': {
             templateUrl: 'templates/friend-detail.html',

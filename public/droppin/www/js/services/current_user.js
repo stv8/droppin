@@ -36,7 +36,9 @@ app.service('CurrentUser', function(localStorageService, $state) {
     };
 
     this.isAuthenticated = function(){
-        var boolean = ( this.droppin_token() != null && this.email() != null && this.droppin_token().length != 0 && this.email().length != 0);
+        var boolean = ( this.droppin_token() != null && this.email() != null
+                        && this.droppin_token().length != 0 && this.email().length != 0);
+
         console.log(boolean);
         return boolean;
     }
