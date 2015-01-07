@@ -5,7 +5,6 @@ app.factory('Camera', ['$rootScope', '$q', function($rootScope, $q) {
                 // init $q
                 var deferred = $q.defer();
 
-
                 // create file input without appending to DOM
                 var fileInput = document.createElement('input');
                 fileInput.setAttribute('type', 'file');
@@ -13,6 +12,7 @@ app.factory('Camera', ['$rootScope', '$q', function($rootScope, $q) {
                 fileInput.onchange = function() {
                     var file = fileInput.files[0];
                     var reader = new FileReader();
+
                     reader.readAsDataURL(file);
                     reader.onload = function () {
                         $rootScope.$apply(function() {
@@ -26,14 +26,13 @@ app.factory('Camera', ['$rootScope', '$q', function($rootScope, $q) {
                 fileInput.click();
 
 
-
-                //// set some default options
+                // set some default options
                 //var defaultOptions = {
-                //    quality: 75,
+                //    quality: 100,
                 //    destinationType: Camera.DestinationType.DATA_URL,
                 //    allowEdit: true,
-                //    targetWidth: 75,
-                //    targetHeight: 75
+                //    targetWidth: 300,
+                //    targetHeight: 300
                 //};
                 //
                 //// allow overriding the default options
@@ -58,7 +57,7 @@ app.factory('Camera', ['$rootScope', '$q', function($rootScope, $q) {
 
 
 
-                // return a promise
+                //return a promise
                 return deferred.promise;
 
             }
