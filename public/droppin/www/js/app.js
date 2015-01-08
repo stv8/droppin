@@ -1,4 +1,4 @@
-var app = angular.module('droppin', ['ionic', 'ngResource', 'LocalStorageModule']);
+var app = angular.module('droppin', ['ionic', 'ngResource', 'LocalStorageModule', 'ngCordova']);
 
 app.run(function($ionicPlatform, $rootScope, $state, CurrentUser) {
   $ionicPlatform.ready(function() {
