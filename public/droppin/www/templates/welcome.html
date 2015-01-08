@@ -5,20 +5,23 @@
                 Droppin
             </h1>
             <div class="card">
+                <label id="signup-email" class="item item-input">
+                    <input type="email" ng-model="signin.email"  placeholder="Email" autofocus required />
+                </label>
+                <label id="signup-password" class="item item-input">
+                    <input type="password" ng-model="signin.password" placeholder="Password" required />
+                </label>
                 <div class="item">
-                    <div class="col col-center">
-                       <div class="row">
-                           <button ng-click="go_to_sign_in()" class="button button-block button-positive">
-                               Sign In
-                           </button>
-                       </div>
-                       <br>
-                       <div class="row">
-                           <button ng-click="go_to_sign_up()" class="button button-block button-positive">
-                               Register
-                           </button>
-                       </div>
-                    </div>
+                    <button type="submit" class="button button-positive button-block" ng-click="signIn()">
+                        Sign In
+                    </button>
+                </div>
+                <br>
+                <div class="item">
+                    <h2 class="text-center">Don't have an account?</h5>
+                    <button ng-click="go_to_sign_up()" class="button button-block button-positive">
+                        Register
+                    </button>
                 </div>
             </div>
         </div>

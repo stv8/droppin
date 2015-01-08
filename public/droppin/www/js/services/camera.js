@@ -4,7 +4,7 @@ app.factory('Camera', ['$rootScope', '$q', '$cordovaCamera', function($rootScope
 
             // init $q
             var deferred = $q.defer();
-            //
+
             //    // create file input without appending to DOM
             //    var fileInput = document.createElement('input');
             //    fileInput.setAttribute('type', 'file');

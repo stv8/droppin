@@ -2,22 +2,26 @@ app.controller('SignUpCtrl', function($scope, $state, Registration, Helpers, Cur
 
     Helpers.redirect_if_authenticated()
 
-    $scope.signup = { first_name: "", email: "", password: "", password_confirmation: "" }
+    $scope.signup = { email: "", password: "" } // TODO password_confirmation: ""
 
     $scope.signUp = function() {
         Helpers.show_loading();
 
         Registration.save(
-            { register: $scope.signup },
+            $scope.signup,
             function(response) {
                 Helpers.hide_loading();
-                var user = response.user;
-                CurrentUser.store(user.authentication_token, user.email, user.first_name);
+                var user = response.us;
+                CurrentUser.store(user.authentication_token, user.email);
                 $state.go('tab.spots');
             },
             function(response) {
                 Helpers.ajax_error_handling(response);
             }
         )
+    }
+
+    $scope.go_to_sign_in = function() {
+        $state.go('welcome');
     }
 });

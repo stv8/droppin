@@ -1,1 +1,10 @@
 /* Empty. Add your own CSS if you like */
+
+/* Override to fix required input border */
+#signup-email,
+#signup-password,
+#signup-password-conf {
+    padding: 16px;
+}
+
+
