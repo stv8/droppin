@@ -13,7 +13,7 @@ module Api
       # GET /spots/1.json
       def show
         @spot = Spot.find(params[:id])
-
+   
         render json: @spot.to_json(:only => [:id, :name, :description], :methods => [:medium_url])
       end
 
@@ -52,7 +52,7 @@ module Api
       end
 
       def permitted_params
-        params.permit(:name, :description, :photo)
+        params.permit(:name, :description, :photo, :spot_type)
       end
 
       private

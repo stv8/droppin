@@ -1,15 +1,26 @@
-<ion-view title="Upload">
+<ion-view title="Upload Spot">
     <ion-content class="padding">
-        <h1>Upload</h1>
-        <form>
-            <div class="list">
+        <div class="content">
+            <div class="card">
                 <label class="item item-input">
-                    <input ng-model="spot.name" type="text" placeholder="Spot Name">
+                    <input ng-model="spot.name" type="text" placeholder="Name" autofocus />
                 </label>
                 <label class="item item-input">
-                    <input ng-model="spot.description" type="text" placeholder="Spot Type">
+                    <input ng-model="spot.description" type="text" placeholder="Description" />
                 </label>
-                <br><br>
+                <br>
+                <br>
+                <fancy-select
+                        header-text="Multiple"
+                        allow-empty='false'
+                        value="val.multiple"
+                        text="spot_types_text"
+                        items="spot_types"
+                        multi-select="true"
+                        >
+                </fancy-select>
+                <br>
+                <br>
                 <button ng-click="takePicture()" class="icon-left ion-ios7-camera button button-positive">
                     Take Picture
                 </button>
@@ -18,6 +29,6 @@
                     Save
                 </button>
             </div>
-        </form>
+        </div>
     </ion-content>
 </ion-view>

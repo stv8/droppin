@@ -11,7 +11,7 @@ app.controller('SignUpCtrl', function($scope, $state, Registration, Helpers, Cur
             $scope.signup,
             function(response) {
                 Helpers.hide_loading();
-                var user = response.us;
+                var user = response.user;
                 CurrentUser.store(user.authentication_token, user.email);
                 $state.go('tab.spots');
             },
