@@ -1,4 +1,4 @@
-app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpers, $cordovaGeolocation) {
+app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpers, Geolocation) {
 
     $scope.spot = { name: null,
                     description: null,
@@ -10,20 +10,27 @@ app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpe
 
     $scope.uploadSpot = function() {
         $ionicLoading.show({
-            template: 'Loading...'
+            template: 'Saving Spot...'
         });
 
-        Spot.save($scope.spot,
-            function(response) {
-                console.log(response);
-                $ionicLoading.hide();
-                Helpers.showAlert('Spot saved!');
-                $scope.cleanUp();
-            },
-            function(response) {
-                console.log(response);
-                $ionicLoading.hide();
-                Helpers.showAlert('Something went wrong.');
+        Geolocation.getLocation()
+            .then(function (position) {
+                $scope.spot.lat = position.coords.latitude;
+                $scope.spot.lon = position.coords.longitude;
+            }).finally(function() {
+                // TODO possible refactor, not sure if I want Spot.save() in finally block
+                Spot.save($scope.spot,
+                    function(response) {
+                        console.log(response);
+                        $ionicLoading.hide();
+                        Helpers.showAlert('Spot saved!');
+                        $scope.cleanUp();
+                    },
+                    function(response) {
+                        console.log(response);
+                        $ionicLoading.hide();
+                        Helpers.showAlert('Something went wrong.');
+                    });
             });
     };
 
@@ -32,30 +39,14 @@ app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpe
             $scope.picSrc = "data:image/jpeg;base64," + imageData;
             console.log($scope.picSrc);
             $scope.spot.photo.data = imageData;
-
-            // TODO refactor geo coordinates and prevent save until location
-            var posOptions = {timeout: 10000, enableHighAccuracy: false};
-            $cordovaGeolocation
-                .getCurrentPosition(posOptions)
-                .then(function (position) {
-                    var lat  = position.coords.latitude;
-                    var long = position.coords.longitude;
-
-                    $scope.spot.lat = lat;
-                    $scope.spot.lon = long;
-
-                    console.log("success in geolocation");
-                }, function(err) {
-                    // error
-                    console.log("error in geolocation");
-                });
-
         })
         .catch(function(error) {
             console.log(error);
         })
     };
 
+
+    // used for fancy select
     $scope.spot_types = [
         {id: 1, text: 'Handrail',   checked: false, icon: null},
         {id: 2, text: 'Hubba',      checked: false, icon: null},
@@ -69,13 +60,18 @@ app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpe
         {id: 10, text: 'Other',     checked: false, icon: null}
     ];
 
+    // used for fancy select
     $scope.spot_types_text = 'Spot Type';
     $scope.val =  {single: null, multiple: null};
 
     // TODO find a different way to clean up the form
     $scope.cleanUp = function() {
-        $scope.spot = { name: null, description: null,
-            photo: { data: null, filename: null, content_type: "image/jpeg" } };
+        $scope.spot = { name: null,
+                        description: null,
+                        photo: { data: null, filename: null, content_type: "image/jpeg" },
+                        lat: null,
+                        lon: null
+                      };
     }
 
 });
