@@ -1,7 +1,7 @@
 app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpers) {
 
-    $scope.spot = { name: " ", description: " ",
-                    photo: { data: " ", filename: " ", content_type: "image/jpeg" } };
+    $scope.spot = { name: null, description: null,
+                    photo: { data: null, filename: null, content_type: "image/jpeg" } };
 
     $scope.uploadSpot = function() {
         $ionicLoading.show({
@@ -43,16 +43,16 @@ app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpe
         {id: 7, text: 'Bank',       checked: false, icon: null},
         {id: 8, text: 'Transition', checked: false, icon: null},
         {id: 9, text: 'Manual Pad', checked: false, icon: null},
-        {id: 10, text: 'Flatbar',   checked: false, icon: null}
+        {id: 10, text: 'Other',     checked: false, icon: null}
     ];
 
-    $scope.spot_types_text = 'Choose Spot Type';
+    $scope.spot_types_text = 'Spot Type';
     $scope.val =  {single: null, multiple: null};
 
     // TODO find a different way to clean up the form
     $scope.cleanUp = function() {
-        $scope.spot = { name: " ", description: " ",
-            photo: { data: " ", filename: " ", content_type: "image/jpeg" } };
+        $scope.spot = { name: null, description: null,
+            photo: { data: null, filename: null, content_type: "image/jpeg" } };
     }
 
 });
