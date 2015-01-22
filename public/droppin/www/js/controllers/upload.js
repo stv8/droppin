@@ -1,7 +1,9 @@
 app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpers) {
 
     $scope.spot = { name: null, description: null,
-                    photo: { data: null, filename: null, content_type: "image/jpeg" } };
+                    photo: { data: null, filename: null, content_type: "image/jpeg" },
+                    spot_type: null
+                  };
 
     $scope.uploadSpot = function() {
         $ionicLoading.show({

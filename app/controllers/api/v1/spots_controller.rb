@@ -20,7 +20,7 @@ module Api
       # POST /spots
       # POST /spots.json
       def create
-        params[:photo] = process_photo
+        params[:photo] = process_photo unless params[:photo][:data].nil?
         @spot = current_api_v1_user.spots.build(permitted_params)
 
         if @spot.save

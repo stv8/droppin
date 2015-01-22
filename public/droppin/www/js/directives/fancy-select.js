@@ -11,7 +11,8 @@ app.directive('fancySelect', ['$ionicModal', function($ionicModal) {
             'items': '=', /* Items list is mandatory */
             'text': '=', /* Displayed text is mandatory */
             'value': '=', /* Selected value binding is mandatory */
-            'callback': '&'
+            'callback': '&',
+            'model': '='
         },
 
         link: function (scope, element, attrs) {
@@ -82,6 +83,9 @@ app.directive('fancySelect', ['$ionicModal', function($ionicModal) {
                     // Remove trailing comma
                     scope.value = scope.value.substr(0, scope.value.length - 1);
                     scope.text = scope.text.substr(0, scope.text.length - 2);
+
+                    // TODO find some different way to link to spot model
+                    scope.model.spot_type = scope.text;
                 }
 
                 // Select first value if not nullable
