@@ -1,4 +1,4 @@
-app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpers, Geolocation) {
+app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpers, Geolocation, $cacheFactory) {
 
     $scope.spot = { name: null,
                     description: null,
@@ -17,10 +17,17 @@ app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpe
             .then(function (position) {
                 $scope.spot.lat = position.coords.latitude;
                 $scope.spot.lon = position.coords.longitude;
+                console.log("get location success");
+            }, function(error) {
+                console.log("error in get location " + error);
             }).finally(function() {
                 // TODO possible refactor, not sure if I want Spot.save() in finally block
                 Spot.save($scope.spot,
                     function(response) {
+                        // bust the cache
+                        var $httpCache = $cacheFactory.get('$http');
+                        $httpCache.removeAll();
+
                         console.log(response);
                         $ionicLoading.hide();
                         Helpers.showAlert('Spot saved!');
