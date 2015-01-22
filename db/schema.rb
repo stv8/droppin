@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121182037) do
+ActiveRecord::Schema.define(version: 20150122171534) do
 
   create_table "spots", force: true do |t|
     t.string   "name"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20150121182037) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "spot_type"
+    t.string   "lat"
+    t.string   "lon"
   end
 
   create_table "users", force: true do |t|

@@ -52,7 +52,7 @@ module Api
       end
 
       def permitted_params
-        params.permit(:name, :description, :photo, :spot_type)
+        params.permit(:name, :description, :photo, :spot_type, :lat, :lon)
       end
 
       private

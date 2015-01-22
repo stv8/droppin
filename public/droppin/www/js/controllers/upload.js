@@ -1,8 +1,11 @@
-app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpers) {
+app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpers, $cordovaGeolocation) {
 
-    $scope.spot = { name: null, description: null,
+    $scope.spot = { name: null,
+                    description: null,
                     photo: { data: null, filename: null, content_type: "image/jpeg" },
-                    spot_type: null
+                    spot_type: null,
+                    lat: null,
+                    lon: null
                   };
 
     $scope.uploadSpot = function() {
@@ -29,6 +32,24 @@ app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpe
             $scope.picSrc = "data:image/jpeg;base64," + imageData;
             console.log($scope.picSrc);
             $scope.spot.photo.data = imageData;
+
+            // TODO refactor geo coordinates and prevent save until location
+            var posOptions = {timeout: 10000, enableHighAccuracy: false};
+            $cordovaGeolocation
+                .getCurrentPosition(posOptions)
+                .then(function (position) {
+                    var lat  = position.coords.latitude;
+                    var long = position.coords.longitude;
+
+                    $scope.spot.lat = lat;
+                    $scope.spot.lon = long;
+
+                    console.log("success in geolocation");
+                }, function(err) {
+                    // error
+                    console.log("error in geolocation");
+                });
+
         })
         .catch(function(error) {
             console.log(error);
