@@ -1,0 +1,35 @@
+<ion-view title="Upload Spot">
+    <ion-content class="padding">
+        <div class="content">
+            <div class="card">
+                <label class="item item-input">
+                    <input ng-model="spot.name" type="text" placeholder="Name" autofocus />
+                </label>
+                <label class="item item-input">
+                    <input ng-model="spot.description" type="text" placeholder="Description" />
+                </label>
+                <br>
+                <br>
+                <fancy-select
+                        header-text="Multiple"
+                        allow-empty='false'
+                        value="val.multiple"
+                        text="spot_types_text"
+                        items="spot_types"
+                        multi-select="true",
+                        model="spot"
+                        >
+                </fancy-select>
+                <br>
+                <br>
+                <button ng-click="takePicture()" class="icon-left ion-ios7-camera button button-positive">
+                    Take Picture
+                </button>
+                <br><br>
+                <button ng-click="uploadSpot()" class="icon ion-ios7-cloud-upload button button-block button-positive   ">
+                    Save
+                </button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

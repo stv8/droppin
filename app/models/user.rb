@@ -12,7 +12,11 @@ class User < ActiveRecord::Base
 	  if authentication_token.blank?
 	    self.authentication_token = generate_authentication_token
 	  end
-	end
+  end
+
+  def reset_authentication_token!
+    self.authentication_token = generate_authentication_token
+  end
 
   private
 

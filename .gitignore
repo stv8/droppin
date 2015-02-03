@@ -18,3 +18,10 @@
 # Ignore secret tokens
 config/initializers/secret_token.rb
 config/initializers/load_keys.rb
+
+.idea/
+
+public/droppin/www/lib/*
+
+# Ignore application configuration
+/config/application.yml

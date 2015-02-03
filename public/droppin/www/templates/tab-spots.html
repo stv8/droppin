@@ -1,0 +1,10 @@
+<ion-view title="Spots">
+    <ion-content>
+        <div class="list">
+            <a ng-repeat="spot in spots" ui-sref="tab.spot-detail({ id:{{spot.id}} })" class="item item-thumbnail-left">
+                <img ng-src="{{ spot.thumb_url }}">
+                <h2>{{ spot.name }}</h2>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>
