@@ -25,7 +25,7 @@ app.run(function($ionicPlatform, $rootScope, $state, CurrentUser) {
   });
 });
 
-app.constant('Host', 'http://localhost:3000')
+app.constant('Host', 'http://localhost:3000');
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -97,7 +97,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller: 'UploadCtrl'
           }
         },
-        date: {
+        data: {
           requiresLogin: true
         }
       })
@@ -110,7 +110,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller: 'FriendsCtrl'
           }
         },
-        date: {
+        data: {
           requiresLogin: true
         }
       })
@@ -123,7 +123,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller: 'FriendDetailCtrl'
           }
         },
-        date: {
+        data: {
           requiresLogin: true
         }
       })
@@ -136,7 +136,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller: 'AccountCtrl'
           }
         },
-        date: {
+        data: {
           requiresLogin: true
         }
       });
@@ -145,4 +145,3 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/welcome');
 
 });
-
