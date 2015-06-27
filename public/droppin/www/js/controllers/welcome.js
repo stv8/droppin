@@ -1,13 +1,12 @@
 app.controller('WelcomeCtrl', function($scope, $state, Helpers, Session, CurrentUser) {
-    //Helpers.redirect_if_authenticated()
 
-    Helpers.redirect_if_authenticated()
+    Helpers.redirect_if_authenticated();
 
-    $scope.signin = { email: "", password: ""}
+    $scope.signin = { email: "", password: ""};
 
     $scope.returnToWelcome = function() {
         $state.go('welcome');
-    }
+    };
 
     $scope.signIn = function() {
         Helpers.show_loading();
@@ -23,10 +22,10 @@ app.controller('WelcomeCtrl', function($scope, $state, Helpers, Session, Current
             function(response) {
                 Helpers.ajax_error_handling(response);
             }
-        )
-    }
+        );
+    };
 
     $scope.go_to_sign_up = function() {
         $state.go('sign_up');
-    }
-})
+    };
+});

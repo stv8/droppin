@@ -1,8 +1,8 @@
 app.controller('SignUpCtrl', function($scope, $state, Registration, Helpers, CurrentUser) {
 
-    Helpers.redirect_if_authenticated()
+    Helpers.redirect_if_authenticated();
 
-    $scope.signup = { email: "", password: "" } // TODO password_confirmation: ""
+    $scope.signup = { email: "", password: "" }; // TODO password_confirmation: ""
 
     $scope.signUp = function() {
         Helpers.show_loading();
@@ -18,10 +18,10 @@ app.controller('SignUpCtrl', function($scope, $state, Registration, Helpers, Cur
             function(response) {
                 Helpers.ajax_error_handling(response);
             }
-        )
-    }
+        );
+    };
 
     $scope.go_to_sign_in = function() {
         $state.go('welcome');
-    }
+    };
 });
