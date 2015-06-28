@@ -17,6 +17,8 @@ module Api
         render json: @user
       end
 
+      # User is actually created in registrations controller
+      # should remove this or combine with registrations
       # POST /users
       # POST /users.json
       def create

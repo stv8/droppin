@@ -21,7 +21,8 @@ app.controller('WelcomeCtrl', function($scope, $state, Helpers, Session, Registr
         if($scope.login) {
             Session.save({ session: $scope.credentials }, success, error);
         } else {
-            Registration.save($scope.credentials, success, error);
+            console.log($scope.credentials);
+            Registration.save({ user: $scope.credentials }, success, error);
         }
     };
 
