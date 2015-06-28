@@ -6,22 +6,33 @@
             </h1>
             <div class="card">
                 <label id="signup-email" class="item item-input">
-                    <input type="email" ng-model="signin.email"  placeholder="Email" autofocus required />
+                    <input type="email" ng-model="credentials.email"  placeholder="Email" autofocus required />
                 </label>
                 <label id="signup-password" class="item item-input">
-                    <input type="password" ng-model="signin.password" placeholder="Password" required />
+                    <input type="password" ng-model="credentials.password" placeholder="Password" required />
                 </label>
                 <div class="item">
-                    <button type="submit" class="button button-positive button-block" ng-click="signIn()">
+                    <button ng-show="login" type="submit" class="button button-positive button-block" ng-click="submit()">
                         Sign In
+                    </button>
+                    <button ng-hide="login" type="submit" class="button button-positive button-block" ng-click="submit()">
+                        Register
                     </button>
                 </div>
                 <br>
                 <div class="item">
-                    <h2 class="text-center">Don't have an account?</h2>
-                    <a href="#" ng-click="go_to_sign_up()" class="text-center">
-                        Register
-                    </a>
+                    <div ng-show="login">
+                        <h2 class="text-center">Don't have an account?</h2>
+                        <button ng-click="toggleLogin()" class="button button-block button-positive">
+                            Register
+                        </button>
+                    </div>
+                    <div ng-hide="login">
+                        <h2 class="text-center"> Already have an account?</h2>
+                        <button ng-click="toggleLogin()" class="button button-block button-positive">
+                            Sign In
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
