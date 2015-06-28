@@ -2,35 +2,20 @@ app.factory('Camera', ['$rootScope', '$q', '$cordovaCamera', function($rootScope
     return {
         getPicture: function (options) {
 
-            // init $q
+            var source;
+            if(options.camera === true) {
+                source = Camera.PictureSourceType.CAMERA;
+            } else {
+                source = Camera.PictureSourceType.PHOTOLIBRARY;
+            }
+
             var deferred = $q.defer();
 
-            //    // create file input without appending to DOM
-            //    var fileInput = document.createElement('input');
-            //    fileInput.setAttribute('type', 'file');
-            //
-            //    fileInput.onchange = function() {
-            //        var file = fileInput.files[0];
-            //        var reader = new FileReader();
-            //
-            //        reader.readAsDataURL(file);
-            //        reader.onload = function () {
-            //            $rootScope.$apply(function() {
-            //                // strip beginning from string
-            //                var encodedData = reader.result.replace(/data:image\/jpeg;base64,/, '');
-            //                deferred.resolve(encodedData);
-            //            });
-            //        };
-            //    };
-            //
-            //    fileInput.click();
-
             document.addEventListener("deviceready", function () {
-
                 var options = {
                     quality: 50,
                     destinationType: Camera.DestinationType.DATA_URL,
-                    sourceType: Camera.PictureSourceType.CAMERA,
+                    sourceType: source,
                     allowEdit: true,
                     encodingType: Camera.EncodingType.JPEG,
                     targetWidth: 100,
@@ -50,5 +35,5 @@ app.factory('Camera', ['$rootScope', '$q', '$cordovaCamera', function($rootScope
             //return a promise
             return deferred.promise;
         }
-    }
+    };
 }]);
