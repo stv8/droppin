@@ -44,24 +44,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       })
 
-      .state('sign_up', {
-        url: "/sign_up",
-        controller: "SignUpCtrl",
-        templateUrl: "templates/sign_up.html",
-        data: {
-          requiresLogin: false
-        }
-      })
-
-    // setup an abstract state for the tabs directive
+      // setup an abstract state for the tabs directive
       .state('tab', {
         url: "/tab",
         abstract: true,
         templateUrl: "templates/tabs.html"
       })
-
-
-    // Each tab has its own nav history stack:
 
       .state('tab.spots', {
         url: '/spots',
