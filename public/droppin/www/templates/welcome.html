@@ -11,6 +11,9 @@
                 <label id="signup-password" class="item item-input">
                     <input type="password" ng-model="credentials.password" placeholder="Password" required />
                 </label>
+                <label ng-hide="login" id="signup-password-confirmation" class="item item-input">
+                    <input type="password" ng-model="credentials.password_confirmation" placeholder="Re-type Password" required />
+                </label>
                 <div class="item">
                     <button ng-show="login" type="submit" class="button button-positive button-block" ng-click="submit()">
                         Sign In

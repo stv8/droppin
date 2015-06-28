@@ -5,11 +5,11 @@ app.controller('WelcomeCtrl', function($scope, $state, Helpers, Session, Registr
     // if login is false, show register form
     $scope.login = true;
 
+    $scope.credentials = {};
+
     $scope.toggleLogin = function() {
         $scope.login = !$scope.login;
     };
-
-    $scope.credentials = { email: "", password: ""};
 
     $scope.returnToWelcome = function() {
         $state.go('welcome');
