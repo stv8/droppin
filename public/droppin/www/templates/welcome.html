@@ -22,21 +22,14 @@
                         Register
                     </button>
                 </div>
-                <br>
-                <div class="item">
-                    <div ng-show="login">
-                        <h2 class="text-center">Don't have an account?</h2>
-                        <button ng-click="toggleLogin()" class="button button-block button-positive">
-                            Register
-                        </button>
-                    </div>
-                    <div ng-hide="login">
-                        <h2 class="text-center"> Already have an account?</h2>
-                        <button ng-click="toggleLogin()" class="button button-block button-positive">
-                            Sign In
-                        </button>
-                    </div>
-                </div>
+            </div>
+            <div ng-show="login"class="text-center">
+                <h5 class="text-center">Don't have an account?</h5>
+                <a href ng-click="toggleLogin()">Register</a>
+            </div>
+            <div ng-hide="login" class="text-center">
+                <h5 class="text-center">Already have an account?</h5>
+                <a href ng-click="toggleLogin()">Login</a>
             </div>
         </div>
     </ion-content>
