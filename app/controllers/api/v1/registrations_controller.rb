@@ -6,7 +6,7 @@ module Api
 
       def create
         user = User.new(user_params)
-        if user.save
+        if user.save!
           render :json => { :user => user }, :status => :ok
         else
           warden.custom_failure!
