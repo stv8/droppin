@@ -1,4 +1,4 @@
-app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpers, Geolocation, $cacheFactory) {
+app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpers, Geolocation, $cacheFactory ) {
 
     $scope.spot = { name: null,
                     description: null,

@@ -13,8 +13,8 @@ module Api
       # GET /spots/1.json
       def show
         @spot = Spot.find(params[:id])
-   
-        render json: @spot.to_json(:only => [:id, :name, :description], :methods => [:medium_url])
+
+        render json: @spot.to_json(:only => [:id, :name, :description], :methods => [:medium_url, :original_url])
       end
 
       # POST /spots

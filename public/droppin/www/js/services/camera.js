@@ -13,13 +13,13 @@ app.factory('Camera', ['$rootScope', '$q', '$cordovaCamera', function($rootScope
 
             document.addEventListener("deviceready", function () {
                 var options = {
-                    quality: 50,
+                    quality: 90,
                     destinationType: Camera.DestinationType.DATA_URL,
                     sourceType: source,
                     allowEdit: true,
                     encodingType: Camera.EncodingType.JPEG,
-                    targetWidth: 100,
-                    targetHeight: 100,
+                    targetWidth: 500,
+                    targetHeight: 500,
                     popoverOptions: CameraPopoverOptions,
                     saveToPhotoAlbum: false
                 };
