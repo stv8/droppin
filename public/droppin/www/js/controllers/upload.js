@@ -1,4 +1,4 @@
-app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpers, Geolocation, $cacheFactory, $ionicActionSheet, $timeout) {
+app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpers, Geolocation, $cacheFactory) {
 
     $scope.spot = { name: null,
                     description: null,
@@ -8,37 +8,6 @@ app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpe
                     lon: null
                   };
 
-
-    $scope.getPhoto = function() {
-
-        // Show the action sheet
-        var hideSheet = $ionicActionSheet.show({
-            buttons: [
-                { text: 'Open Gallery' },
-                { text: 'Take Photo' }
-            ],
-            titleText: 'Select a source.',
-            cancelText: 'Cancel',
-            cancel: function() {
-                // add cancel code..
-                hideSheet();
-            },
-            buttonClicked: function(index) {
-                if(index === 0) {
-                    $scope.takePicture({camera: false});
-                } else if(index == 1) {
-                    $scope.takePicture({camera: true});
-                }
-
-                return true;
-            }
-        });
-
-        // For example's sake, hide the sheet after two seconds
-        $timeout(function() {
-            hideSheet();
-        }, 4000);
-    };
 
     $scope.uploadSpot = function() {
         $ionicLoading.show({
@@ -72,18 +41,6 @@ app.controller('UploadCtrl', function($scope, Spot, Camera, $ionicLoading, Helpe
                     });
             });
     };
-
-    $scope.takePicture = function(camera) {
-        Camera.getPicture(camera).then(function(imageData) {
-            $scope.picSrc = "data:image/jpeg;base64," + imageData;
-            console.log($scope.picSrc);
-            $scope.spot.photo.data = imageData;
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
-    };
-
 
     // used for fancy select
     $scope.spot_types = [
