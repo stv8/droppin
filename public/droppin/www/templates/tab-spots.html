@@ -1,10 +1,31 @@
 <ion-view title="Spots">
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="toggleGrid()">
+            Grid
+        </button>
+    </ion-nav-buttons>
     <ion-content>
-        <div class="list">
+        <div ng-hide="gridView" class="list">
             <a ng-repeat="spot in spots" ui-sref="tab.spot-detail({ id:{{spot.id}} })" class="item item-thumbnail-left">
                 <img ng-src="{{ spot.thumb_url }}">
                 <h2>{{ spot.name }}</h2>
             </a>
+        </div>
+        <div ng-show="gridView">
+            <div class="row" ng-repeat="spot in spots" ng-if="$index % 4 === 0">
+                <div class="col col-25" ng-if="$index < spots.length">
+                    <img ng-src="{{spots[$index].thumb_url}}" width="100%" />
+                </div>
+                <div class="col col-25" ng-if="$index + 1 < spots.length">
+                    <img ng-src="{{spots[$index + 1].thumb_url}}" width="100%" />
+                </div>
+                <div class="col col-25" ng-if="$index + 2 < spots.length">
+                    <img ng-src="{{spots[$index + 2].thumb_url}}" width="100%" />
+                </div>
+                <div class="col col-25" ng-if="$index + 3 < spots.length">
+                    <img ng-src="{{spots[$index + 3].thumb_url}}" width="100%" />
+                </div>
+            </div>
         </div>
     </ion-content>
 </ion-view>
